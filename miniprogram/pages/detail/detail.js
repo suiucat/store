@@ -1,4 +1,4 @@
-// page/home/home.js
+// pages/detail/detail.js
 const db = require("../../utils/db.js");
 const utils = require("../../utils/util.js");
 
@@ -8,39 +8,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-    productList: [],  
+    product: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProductList();
+    const currentProductId = options.id;
+    this.getProductDetail(currentProductId);
   },
-  /** 
-   *  业务逻辑
-   */
-  getProductList() {
+  /* 业务逻辑 */
+  getProductDetail(productId) {
     wx.showLoading({
-      title: "拼命加载中...",
+      title: '拼命加载中...',
     })
-
-    db.getProductList().then(result => {
-      // console.log(result);
-      wx.hideLoading();
-
-      const data = result.data;
-      // 2 digits for price
-      data.forEach(product => product.price = utils.priceFormat(product.price))
-
-      if (data.length) {
+    db.getProductDetail(productId).then(result => {
+      const data = result.result;
+      // 价格保留两位小数
+      data.price = utils.priceFormat(data.price);
+      if (data) {
         this.setData({
-          productList: data,
+          product: data,
         });
+        console.log(this.data, "id" + productId);
+        wx.hideLoading();
+      } else {
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
       }
     }).catch(err => {
       console.log(err);
       wx.hideLoading();
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
     });
   },
   /**
