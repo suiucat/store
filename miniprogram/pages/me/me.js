@@ -1,20 +1,35 @@
 // page/me/me.js
+const utils = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('onLoad');
 
   },
+  /* 业务 */
+  onTapLogin(e) {
+    this.setData({
+      userInfo: e.detail.userInfo,
+    });
+  },
 
+  onTapAddress() {
+    wx.showToast({
+      icon: "none",
+      title: "此功能暂未开放"
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +41,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    utils.getUserInfo().then(userInfo => {
+      console.log('已授权');
+      this.setData({
+        userInfo: userInfo,
+      });
+    }).catch(err => {
+      console.log('未授权');
+    });
   },
 
   /**

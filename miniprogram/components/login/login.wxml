@@ -1,0 +1,9 @@
+<!--components/login/login.wxml-->
+<view class="login-card">
+    <view class="login-head"></view>
+    <view class="login-info">
+      <view class="login-text">暂未登录</view>
+      <view class="login-tips">点击下方按钮登录</view>
+    </view>
+</view>
+<button class="login-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">登录</button>
