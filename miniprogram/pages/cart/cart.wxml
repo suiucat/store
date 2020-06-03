@@ -1,2 +1,6 @@
 <!--page/cart/cart.wxml-->
-<text>page/cart/cart.wxml</text>
+<image class="bg" src="/images/icon/bg.png"></image>
+
+<view wx:if="{{!userInfo}}">
+  <login bindonLogin="onTapLogin"></login> 
+</view>

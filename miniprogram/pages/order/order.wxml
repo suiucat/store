@@ -1,2 +1,34 @@
 <!--page/order/order.wxml-->
-<text>page/order/order.wxml</text>
+<image class="bg" src="/images/icon/bg.png"></image>
+
+<view wx:if="{{!userInfo}}">
+  <login bindonLogin="onTapLogin"></login> 
+</view>
+
+<view wx:else>
+  <view class="order-head">
+    <image class="order-head-line" src="/images/icon/line-black.png"></image>
+    <view class="order-head-text">已完成订单</view>
+  </view>
+
+  <view class="order-block" wx:for="{{orderList}}" wx:for-item="block" wx:key="id">
+
+    <view class="order-card">
+      <image class="order-image" mode="widthFix" src="{{block.productList.image}}"></image>
+
+      <view class="order-info">
+        <view class="order-name">{{block.productList.name}}</view>
+        <view class="order-price">￥ {{block.productList.price}}</view>
+      </view>
+
+      <view class="order-opr">
+        <view class="order-btn">Reviews</view>
+        <view class="order-count">x{{block.productList.count}}</view>
+      </view>
+
+    </view>
+
+  </view>
+
+
+</view>

@@ -1,5 +1,5 @@
 // page/me/me.js
-const utils = require('../../utils/util.js');
+const util = require('../../utils/util.js');
 
 Page({
 
@@ -41,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    utils.getUserInfo().then(userInfo => {
+    util.getUserInfo().then(userInfo => {
       console.log('已授权');
       this.setData({
         userInfo: userInfo,

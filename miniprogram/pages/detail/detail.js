@@ -31,7 +31,6 @@ Page({
         this.setData({
           product: data,
         });
-        console.log(this.data, "id" + productId);
         wx.hideLoading();
       } else {
         setTimeout(() => {
@@ -44,6 +43,34 @@ Page({
       setTimeout(() => {
         wx.navigateBack();
       }, 2000);
+    });
+  },
+  buy() {
+    wx.showLoading();
+
+    const productToBuy = Object.assign({
+      count: 1
+    }, this.data.product)
+
+    productToBuy.productId = productToBuy._id;
+    db.addToOrder({
+      list: productToBuy,
+    }).then(res => {
+      wx.hideLoading();
+      const data = res.result;
+
+      if (data) {
+        wx.showToast({
+          title: '购买成功',
+        })
+      }
+    }).catch(err => {
+      console.log(err);
+      wx.hideLoading();
+      wx.showToast({
+        icon: "none",
+        title: '购买失败',
+      })
     });
   },
   /**

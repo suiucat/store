@@ -5,21 +5,31 @@ module.exports = {
 
   getUserInfo() {
     return new Promise((resolve, reject) => {
+      this.isAuthenticated().then(() => {
+        wx.getUserInfo({
+          success(res) {
+            const userInfo = res.userInfo;
+            resolve(userInfo);
+          }
+        });
+      }).catch(() => {
+        reject();
+      });
+    });  
+  },
+
+  isAuthenticated() {
+    return new Promise((resolve, reject) => {
       wx.getSetting({
         success(res) {
-          console.log(res, 'res');
-          if (res.authSetting['scope.userInfo'] === true) { // 已授权
-            wx.getUserInfo({
-              success(res) {
-                const userInfo = res.userInfo;
-                resolve(userInfo);
-              }
-            });
-          } else {// 未授权
+          if (res.authSetting['scope.userInfo'] === true) {
+            resolve();
+          } else {
             reject();
           }
         }
-      })
-    });  
-  }
+      });
+    });
+  },
+
 }
