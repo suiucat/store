@@ -4,7 +4,16 @@
 <view wx:if="{{!userInfo}}">
   <login bindonLogin="onTapLogin"></login> 
 </view>
-
+<view wx:elif="{{orderList.length === 0}}">
+    <view class="noOrder">
+        <view class="noOrder-desc">
+          <text class="noOrder-text">订单竟然是空的~</text>
+        </view>
+        <view class="noOrder-footer">
+            <navigator class="noOrder-btn" url="/pages/home/home" open-type="switchTab">去逛逛</navigator>
+        </view>
+    </view>
+</view>
 <view wx:else>
   <view class="order-head">
     <image class="order-head-line" src="/images/icon/line-black.png"></image>

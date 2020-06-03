@@ -73,6 +73,26 @@ Page({
       })
     });
   },
+
+  addToCart() {
+    wx.showLoading({
+      title: '',
+    })
+
+    db.addToCart(this.data.product).then(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '添加成功'
+      })
+    }).catch(err => {
+      wx.hideLoading()
+
+      wx.showToast({
+        icon: 'none',
+        title: 'Failed'
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -40,5 +40,31 @@ module.exports = {
       }).catch(() => {
         return {};
       });
-  }
+  },
+
+  addToCart(data) {
+    return util.isAuthenticated().then(() => {
+      return wx.cloud.callFunction({
+        name: 'addToCart',
+        data,
+      });
+    }).catch(() => {
+      console.log("addToCart未授权");
+    });
+  },
+
+  getCart() {
+    return util.isAuthenticated()
+      .then(() => {
+        return wx.cloud.callFunction({
+          name: 'getCart',
+      })
+      }).catch(() => {
+        wx.showToast({
+          icon: 'none',
+          title: '请先登录'
+        })
+        return {}
+      })
+  },
 }
