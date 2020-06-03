@@ -54,7 +54,7 @@ Page({
 
     productToBuy.productId = productToBuy._id;
     db.addToOrder({
-      list: productToBuy,
+      list: [productToBuy], // 这里处理是为了数据结构一致
     }).then(res => {
       wx.hideLoading();
       const data = res.result;

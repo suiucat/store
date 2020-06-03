@@ -1,19 +1,14 @@
-<!--page/order/order.wxml-->
 <image class="bg" src="/images/icon/bg.png"></image>
 
 <view wx:if="{{!userInfo}}">
-  <login bindonLogin="onTapLogin"></login> 
+  <login bindonLogin="onTapLogin"></login>
 </view>
-<view wx:elif="{{orderList.length === 0}}">
-    <view class="noOrder">
-        <view class="noOrder-desc">
-          <text class="noOrder-text">订单竟然是空的~</text>
-        </view>
-        <view class="noOrder-footer">
-            <navigator class="noOrder-btn" url="/pages/home/home" open-type="switchTab">去逛逛</navigator>
-        </view>
-    </view>
+
+<view class="order-empty" wx:elif="{{orderList.length === 0}}">
+  <image class="empty-image" src="/images/icon/order.png"></image>
+  <view class="empty-text">空空如也</view>
 </view>
+
 <view wx:else>
   <view class="order-head">
     <image class="order-head-line" src="/images/icon/line-black.png"></image>
@@ -22,22 +17,17 @@
 
   <view class="order-block" wx:for="{{orderList}}" wx:for-item="block" wx:key="id">
 
-    <view class="order-card">
-      <image class="order-image" mode="widthFix" src="{{block.productList.image}}"></image>
-
+    <view class="order-card" wx:for="{{block.productList}}" wx:key="name">
+      <image class="order-image" mode="widthFix" src="{{item.image}}"></image>
       <view class="order-info">
-        <view class="order-name">{{block.productList.name}}</view>
-        <view class="order-price">￥ {{block.productList.price}}</view>
+        <view class="order-name">{{item.name}}</view>
+        <view class="order-price">￥ {{item.price}}</view>
       </view>
-
       <view class="order-opr">
-        <view class="order-btn">Reviews</view>
-        <view class="order-count">x{{block.productList.count}}</view>
+        <view class="order-btn">订单详情</view>
+        <view class="order-count">x{{item.count}}</view>
       </view>
-
     </view>
 
   </view>
-
-
 </view>

@@ -26,7 +26,7 @@
       </view>
       <view class="cart-total-text">全选</view>
     </view>
-    <view class="cart-edit">{{isCartEdit ? '完成' : '编辑'}}</view>
+    <view class="cart-edit" bindtap="onTapEditCart">{{isCartEdit ? '完成' : '编辑'}}</view>
   </view>
   <!-- 滚动视图 -->
   <scroll-view class="product-list" scroll-y scroll-with-animation enable-back-to-top>
@@ -38,10 +38,11 @@
       <view class="product-info">
         <view class="product-name">{{item.name}}</view>
         <view class="product-price">￥{{item.price}}</view>
+        <!-- 编辑状态下显示 -->
         <view class="product-count-edit" wx:if="{{isCartEdit}}">
-          <view class="count-minus">-</view>
+          <view class="count-minus"  bindtap="adjustCartProductCount" data-type="minus" data-id="{{item.productId}}">-</view>
           <view class="count-now">{{item.count}}</view>
-          <view class="count-add">+</view>
+          <view class="count-add"  bindtap="adjustCartProductCount" data-type="add" data-id="{{item.productId}}">+</view>
         </view>
         <view class="product-count" wx:else>x {{item.count}}</view>
       </view>
@@ -49,7 +50,7 @@
   </scroll-view>
 
   <!-- 结算区域 -->
-  <view class="cart-checkout">
+  <view class="cart-checkout" wx:if="{{!isCartEdit}}">
       <view class="cart-total">
         <view class="cart-check-wrapper {{isSelectAllChecked ? 'check' : ''}}" bindtap="onTapCheck" data-id="selectAll">
           <image class="cart-check" src="/images/icon/check.png" wx:if="{{isSelectAllChecked}}"></image>
@@ -57,6 +58,6 @@
         <view class="cart-total-text">全选</view>
       </view>
       <view class="cart-checkout-text"><text>总计</text><text class="cart-checkout-now">￥ {{cartTotal}}</text></view>
-      <view class="pay-btn {{cartTotal > 0 ? 'pay-avalible' : ''}}">结算</view>
+      <view class="pay-btn {{cartTotal > 0 ? 'pay-avalible' : ''}}" bindtap="onTapCheckout">结算</view>
     </view>
 </view>

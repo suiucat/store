@@ -67,4 +67,22 @@ module.exports = {
         return {}
       })
   },
+
+  updateCart(list) {
+    return util.isAuthenticated()
+    .then(() => {
+      return wx.cloud.callFunction({
+        name: 'updateCart',
+        data: {
+          list,
+        }
+      });
+    }).catch(err => {
+      wx.showToast({
+        icon: 'none',
+        title: '请先登录'
+      })
+      return {}
+    });
+  }
 }
