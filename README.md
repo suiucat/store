@@ -1,12 +1,27 @@
-# 云开发 quickstart
+#### 1. 项目描述
+    基于微信小程序的电商平台, 使用原生开发
+#### 2. 功能清单
+- [x] 商品列表
+- [x] 推荐商品
+- [x] 商品评论列表
+- [x] 商品文字+图片评论
+- [x] 立即购买商品
+- [x] 加入购物车
+- [x] 购物车编辑
+- [x] 订单列表
+- [x] 订单评论
+- [ ] 收货地址
+- [x] 联系我们
+#### 3.项目截图
+![](https://github.com/suiucat/myBlog/blob/store/store/p1.png)
+![](https://github.com/suiucat/myBlog/blob/store/store/p2.png)
+![](https://github.com/suiucat/myBlog/blob/store/store/p3.png)
+![](https://github.com/suiucat/myBlog/blob/store/store/p4.png)
+#### 4.怎样使用?
+    git clone -b dev git@github.com:suiucat/wechatDemo.git
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+### 5.参考文档
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
-
-## 参考文档
-
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+- [微信小程序文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+- [微信小程序云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
