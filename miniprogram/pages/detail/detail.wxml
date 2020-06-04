@@ -4,7 +4,7 @@
   <view class="product-name">{{product.name}}</view>
   <view class="product-source">{{product.source}}</view>
   <view class="product-meta">
-    <view class="product-money">$</view>
+    <view class="product-money">￥</view>
     <view class="product-price">{{product.price}}</view>
   </view>
 </view>

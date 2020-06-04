@@ -50,6 +50,7 @@ module.exports = {
       });
     }).catch(() => {
       console.log("addToCart未授权");
+      return {};
     });
   },
 
@@ -58,7 +59,7 @@ module.exports = {
       .then(() => {
         return wx.cloud.callFunction({
           name: 'getCart',
-      })
+         })
       }).catch(() => {
         wx.showToast({
           icon: 'none',

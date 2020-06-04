@@ -14,8 +14,6 @@ Page({
   },
 
   onShow: function () {
-    //做一些初始化
-
     util.getUserInfo().then(userInfo => {
       this.getCart()
       this.setData({
@@ -27,7 +25,6 @@ Page({
   },
   
   onTapCheck(event) {
-    console.log(event, 'event');
     const checkId = event.currentTarget.dataset.id
     const cartCheckMap = this.data.cartCheckMap
     let isSelectAllChecked = this.data.isSelectAllChecked
@@ -61,7 +58,6 @@ Page({
   },
   /* 编辑商品 */
   onTapEditCart(event) {
-      console.log(this.data.isCartEdit, 'this.data.isCartEdit');
       if (!this.data.isCartEdit) {
         this.setData({
           isCartEdit: true,
@@ -151,7 +147,7 @@ Page({
       return;
     }
     wx.showLoading({
-      title: ''
+      title: '提交中...'
     })
 
     const cartCheckMap = this.data.cartCheckMap;
@@ -165,19 +161,19 @@ Page({
       list: productsToCheckout,
       isCheckout: true
     }).then(result => {
-      wx.hideLoading()
-      const data = result.result
-      if (data) {
-        wx.showToast({
-          title: 'Succeed',
-        })
+      console.log(result, 'result');
 
-        this.setData({
-          cartList: cartToUpdate,
-        })
-
-        this.getCart()
-      }
+    }).then(()=> {
+      console.log('222')
+      wx.hideLoading();
+      wx.showToast({
+        icon: 'none',
+        title: '提交成功'
+      });
+      this.setData({
+        cartList: cartToUpdate,
+      })
+      this.getCart()
     }).catch(err => {
       console.error(err)
       wx.hideLoading()  
@@ -186,7 +182,7 @@ Page({
 
   getCart() {
     wx.showLoading({
-      title: '拼命加载中...'
+      title: 'Loading...'
     })
     db.getCart().then(result => {
       wx.hideLoading();

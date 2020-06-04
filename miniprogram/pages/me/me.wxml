@@ -13,7 +13,7 @@
     <view class="user-split"></view>
     <view class="user-options">
       <view class="option" bindtap="onTapAddress">
-        <view class="option-title">我的收获地址</view>
+        <view class="option-title">收货地址管理</view>
         <image class="option-arrow" src="/images/icon/grey-arrow.png"></image>
       </view>
       <view   class="option" bindtap="onTapService">
