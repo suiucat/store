@@ -27,6 +27,7 @@ Page({
       const data = result.result;
       // 价格保留两位小数
       data.price = utils.priceFormat(data.price);
+      console.log(result, 'result');
       if (data) {
         this.setData({
           product: data,
@@ -93,6 +94,16 @@ Page({
       })
     })
   },
+
+  onTapReviewEntry() {
+    if (this.data.product.reviewCount) {
+      const product = this.data.product
+      wx.navigateTo({
+        url: `/pages/review/review?productId=${product._id}&price=${product.price}&name=${product.name}&image=${product.image}`,
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

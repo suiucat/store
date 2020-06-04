@@ -84,5 +84,36 @@ module.exports = {
       })
       return {}
     });
-  }
+  },
+
+  addReview(data) {
+    return util.isAuthenticated()
+    .then(() => {
+      wx.cloud.callFunction({
+        name: "addReview",
+        data,
+      });
+    })
+    .catch(() => {
+      wx.showToast({
+        icon: 'none',
+        title: '请先登录'
+      })
+
+      return {}
+    });
+  },
+
+  getReviews(productId) {
+    return db.collection('review').where({
+      productId,
+    }).get()
+  },
+
+  uploadImage(imgPath) {
+    return wx.cloud.uploadFile({
+      cloudPath: `review/${util.getId()}`,
+      filePath: imgPath,
+    })
+  },
 }
