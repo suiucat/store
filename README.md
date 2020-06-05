@@ -18,7 +18,7 @@
 ![](https://github.com/suiucat/myBlog/blob/store/store/p3.png)
 ![](https://github.com/suiucat/myBlog/blob/store/store/p4.png)
 #### 4.怎样使用?
-    git clone -b dev git@github.com:suiucat/wechatDemo.git
+    git clone -b dev git@github.com:suiucat/store.git
 
 ### 5.参考文档
 
